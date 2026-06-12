@@ -1,57 +1,107 @@
-# 🌤️ WeatherWizard
+🌤️ WeatherWizard
 
-WeatherWizard ek modern, fast, aur clean **Java Swing** desktop application hai jo real-time weather updates dikhati hai. Is project ko **Object-Oriented Programming (OOP) Principles** aur **Single Responsibility Principle (SRP)** ke mutabiq 4 alag-alag modules (classes) mein divide kiya gaya hai taaki code maintainable aur clean rahe.
+WeatherWizard is a modern, fast, and clean Java Swing desktop application that displays real-time weather updates. The project is designed according to Object-Oriented Programming (OOP) principles and the Single Responsibility Principle (SRP) by dividing the code into four separate modules (classes), making it highly maintainable and well-organized.
 
----
-
-## 🚀 Features
-
-* **Live Weather Data:** Open-Meteo API ka use karte hue kisi bhi city ka live data fetch karta hai.
-* **Glassmorphism UI:** Translucent (see-through) panels aur modern rounded components.
-* **Dynamic Background Themes:** Weather code ke mutabiq (Sunny, Rainy, Stormy, etc.) background gradient smoothly change hota hai.
-* **Live Particle Animations:** Baarish (Rain drops), baraf (Snowflakes), aur bijli (Lightning) ki live structural animations.
-* **Detailed Forecasts:** Current metrics ke sath-sath **8-Hour Hourly Forecast** aur **7-Day Daily Forecast** bhi dikhata hai.
-* **Asynchronous Fetching:** Background threads (`CompletableFuture`) ka use kiya gaya hai taaki data fetch hote waqt UI freeze na ho.
 
 ---
 
-## 🏗️ Project Architecture (OOP Separation)
+🚀 Features
 
-Project ko clean rakhne ke liye code ko in 4 files mein divide kiya gaya hai:
+Live Weather Data: Fetches real-time weather information for any city using the Open-Meteo API.
 
-1. **`WeatherWizard.java` (The Stage / UI Controller):** 
-   Main executable class jo window frame, layout design, animations, aur user interactions ko handle karti hai.
-2. **`WeatherEngine.java` (The Brain / Backend):** 
-   Saari network HTTP requests, API calls, aur raw JSON data ki string parsing handles karti hai (without external libraries).
-3. **`UIHelpers.java` (The Designer / Stylist):** 
-   Reusable styling wrappers, custom translucent panels, weather descriptions, aur icons/emojis ke conversion helpers hold karti hai.
-4. **`WeatherData.java` (The Data Carrier):** 
-   Ek pure Data Model class jo API se aane wale saare weather variables ko ek single packet (Object) mein encapsulate karti hai.
+Glassmorphism UI: Features translucent (see-through) panels and modern rounded components.
 
----
+Dynamic Background Themes: Background gradients automatically change based on weather conditions (Sunny, Rainy, Stormy, etc.).
 
-## 🛠️ OOP Principles Implemented
+Live Particle Animations: Includes animated rain drops, snowflakes, and lightning effects for an immersive experience.
 
-* **Inheritance:** `WeatherWizard extends JFrame` aur `BgPanel extends JPanel` ka use karke Java Swing ke built-in features ko inherit kiya gaya.
-* **Polymorphism:** `paintComponent(Graphics g)` method ko **override** karke standard boring panel ki jagah custom animations aur gradients draw kiye gaye.
-* **Encapsulation:** Sensitive variables ko `private` rakha gaya aur saare weather data points ko `WeatherData` class ke capsule mein safe bundle kiya gaya.
-* **Abstraction:** UI components se API networking aur JSON parsing ki saari mushkil complexity ko `WeatherEngine` ke andar chhupa (abstract) diya gaya.
+Detailed Forecasts: Displays current weather metrics along with an 8-hour hourly forecast and a 7-day daily forecast.
+
+Asynchronous Fetching: Uses CompletableFuture and background threads to fetch data without freezing the user interface.
+
+
 
 ---
 
-## 💻 How to Run in Eclipse
+🏗️ Project Architecture (OOP Separation)
 
-1. Eclipse IDE kholein aur ek naya **Java Project** banayein.
-2. Project ka naam `WeatherWizard` rakhein.
-3. `src` folder ke andar ek package banayein jiska naam `weatherwizard` ho.
-4. Upar batayi gayi charo `.java` files (`WeatherWizard.java`, `WeatherEngine.java`, `UIHelpers.java`, `WeatherData.java`) ko us package mein paste kar dein.
-5. `WeatherWizard.java` file par right-click karein aur **Run As > Java Application** par click karein.
+To keep the code clean and maintainable, the project is divided into the following four files:
+
+1. WeatherWizard.java (The Stage / UI Controller)
+
+The main executable class responsible for managing the application window, layout design, animations, and user interactions.
+
+2. WeatherEngine.java (The Brain / Backend)
+
+Handles all network communication, HTTP requests, API calls, and raw JSON string parsing without relying on external libraries.
+
+3. UIHelpers.java (The Designer / Stylist)
+
+Contains reusable styling components, custom translucent panels, weather descriptions, and helper methods for weather icons and emojis.
+
+4. WeatherData.java (The Data Carrier)
+
+A pure data model class that encapsulates all weather-related variables received from the API into a single object.
+
 
 ---
 
-## 🌐 APIs Used
+🛠️ OOP Principles Implemented
 
-* **Geocoding API:** `https://geocoding-api.open-meteo.com/` (City ke coordinates nikalne ke liye)
-* **Forecast API:** `https://api.open-meteo.com/` (Live weather data aur forecast ke liye)
+Inheritance
 
-*Note: Is project ko chalane ke liye kisi external library ya `.jar` file (jaise JSON parsers) ki zaroorat nahi hai. Yeh pure native Java core features par chalta hai.*
+WeatherWizard extends JFrame, and BgPanel extends JPanel, allowing the application to inherit built-in Java Swing functionality.
+
+Polymorphism
+
+The paintComponent(Graphics g) method is overridden to replace the standard panel appearance with custom animations and dynamic gradient backgrounds.
+
+Encapsulation
+
+Sensitive variables are kept private, while all weather-related data is securely packaged inside the WeatherData class.
+
+Abstraction
+
+Complex API networking and JSON parsing logic are hidden within the WeatherEngine class, allowing the UI layer to interact with weather data through a simplified interface.
+
+
+---
+
+💻 How to Run in Eclipse
+
+1. Open Eclipse IDE and create a new Java Project.
+
+
+2. Name the project WeatherWizard.
+
+
+3. Inside the src folder, create a package named weatherwizard.
+
+
+4. Copy and paste the four Java files (WeatherWizard.java, WeatherEngine.java, UIHelpers.java, and WeatherData.java) into the package.
+
+
+5. Right-click on WeatherWizard.java and select Run As → Java Application.
+
+
+
+
+---
+
+🌐 APIs Used
+
+Geocoding API
+
+Used to retrieve the geographical coordinates of a city.
+
+https://geocoding-api.open-meteo.com/
+
+
+Forecast API
+
+Used to fetch real-time weather information and forecasts.
+
+https://api.open-meteo.com/
+
+
+Note: This project does not require any external libraries or .jar files (such as JSON parsers). It runs entirely on native Java core features.
